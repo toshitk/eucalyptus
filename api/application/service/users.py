@@ -5,5 +5,6 @@ from api.infrastructrure.database.repository.users import UsersRepository
 
 
 class UsersService:
-    def list_by_id(self, session: Session, id: str) -> list[User]:
-        return UsersRepository.list_by_id(session=session, id=id)
+    @staticmethod
+    async def list_by_id(session: Session, id: int) -> list[User]:
+        return await UsersRepository.list_by_id(session=session, id=id)
