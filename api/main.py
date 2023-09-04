@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
+from api.presentation.controller import users_router
+
 app = FastAPI()
 
 
-@app.get("/hello")
-async def hello():
-    return {"message": "hello world!"}
+app.include_router(users_router)
