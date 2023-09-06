@@ -26,13 +26,13 @@ services:
   web:
     image: node:16-alpine
     build:
-      context: .
+      context: ./web
       dockerfile: Dockerfile.web
     command: npm run serve
     ports:
       - 8080:8080
     working_dir: /app
     volumes:
-      - .:/app
+      - ./web:/app
 volumes:
   mysql_data:
