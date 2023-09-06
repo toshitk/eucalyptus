@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends
-
-from api.src.application.service.users import UsersService
-from api.src.infrastructrure.database.connection import create_session
-from api.src.presentation.schema.users import ResponseModel
+from src.application.service.users import UsersService
+from src.infrastructrure.database.connection import create_session
+from src.presentation.schema.users import ResponseModel
 
 router = APIRouter(prefix="/users", tags=["users"])
 

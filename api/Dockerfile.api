@@ -12,4 +12,4 @@ RUN if [ -f pyproject.toml ]; then poetry install; fi
 
 EXPOSE 8000
 
-ENTRYPOINT ["poetry", "run", "uvicorn", "api.src.main:app", "--host", "0.0.0.0", "--reload"]
+ENTRYPOINT ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--reload"]
