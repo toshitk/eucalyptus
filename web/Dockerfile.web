@@ -2,13 +2,23 @@ FROM node:16
 
 WORKDIR /app
 
+# Create a temporary directory and copy the package*.json files
+WORKDIR /tmp
 COPY package*.json ./
-RUN npm install
 
+# Install the dependencies and move the node_modules directory to /app
+RUN npm install && mv node_modules /app/
+
+# Move back to /app
+WORKDIR /app
+
+# Copy the rest of the application
 COPY . .
 
-RUN npm run build
+# Change the ownership
+RUN chown -R node:node /app
 
-EXPOSE 8080
+# Switch to the node user
+USER node
 
-CMD ["npm", "run", "serve"]
+EXPOSE 3000
