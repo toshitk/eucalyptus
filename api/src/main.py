@@ -4,7 +4,7 @@ from src.presentation.controller import users_router
 
 app = FastAPI()
 origins = [
-    "http://localhost:8080",
+    "http://localhost:3000",
 ]
 
 app.add_middleware(

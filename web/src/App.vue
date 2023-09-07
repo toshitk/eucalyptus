@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
 import axios from 'axios';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'FetchDataComponent',
