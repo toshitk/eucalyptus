@@ -8,6 +8,6 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 class UsersController:
     @staticmethod
-    @router.get("/{user_id}", response_model=list[ResponseModel])
+    @router.get("/{user_id}", response_model=ResponseModel)
     async def get(user_id: int, session=Depends(create_session)):
-        return await UsersService.list_by_id(session=session, id=user_id)
+        return await UsersService.find_by_id(session=session, id=user_id)
