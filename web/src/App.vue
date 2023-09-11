@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <GlobalMenu />
-    <!-- <ExpandMenu /> -->
+    <ExpandMenu />
   </div>
 </template>
 
