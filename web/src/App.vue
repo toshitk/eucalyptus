@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <GlobalMenu />
-    <ExpandMenu />
+    <GlobalMenu @toggle-drawer="toggleDrawer" />
+    <ExpandMenu :drawer="drawer" @update:drawer="drawer = $event" />
   </div>
 </template>
 
@@ -13,6 +13,16 @@ export default {
   components: {
     ExpandMenu,
     GlobalMenu
+  },
+  data() {
+    return {
+      drawer: true,
+    };
+  },
+  methods: {
+    toggleDrawer() {
+      this.drawer = !this.drawer;
+    }
   }
 }
 </script>
