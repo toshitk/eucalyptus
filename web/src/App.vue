@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import ExpandMenu from "./ExpandMenu.vue";
-import GlobalMenu from "./GlobalMenu.vue";
+import ExpandMenu from "./components/ExpandMenu.vue";
+import GlobalMenu from "./components/GlobalMenu.vue";
 
 export default {
   components: {
