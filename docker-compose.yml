@@ -14,8 +14,6 @@ services:
     platform: linux/x86_64
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      # MYSQL_USER: "apilocaluser"
-      # MYSQL_PASSWORD: "uqXSmMj7su"
       MYSQL_DATABASE: "eucalyptus_local"
       TZ: "Asia/Tokyo"
     volumes:
