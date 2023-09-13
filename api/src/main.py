@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.presentation.controller import users_router
+from src.presentation.controller import (
+  users_router,
+  plans_router,
+)
 
 app = FastAPI()
 allow_origins = [
@@ -15,3 +18,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(users_router)
+app.include_router(plans_router)
