@@ -1,13 +1,15 @@
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from fastapi.testclient import TestClient
 from pytest import fixture
+from src.infrastructrure.database.connection import create_session
 from src.infrastructrure.database.model.plan import Plan
 from src.main import app
 
 
 @fixture
 def _fixture():
+    app.dependency_overrides[create_session] = lambda: "dummy session"
     client = TestClient(app=app, base_url="http://test")
     return client
 
@@ -31,3 +33,4 @@ class TestPlansController:
 
         assert response.status_code == 200
         assert response.json() == expected
+        list_my_plans.assert_called_once_with(session="dummy session", user_id=1)
