@@ -24,7 +24,9 @@ class User(Base):
         deleted_at: datetime | None = None,
         created_at: datetime | None = None,
         updated_at: datetime | None = None,
+        id: int | None = None,
     ):
+        self.id = id
         self.name = name
         self.email = email
         self.deleted_at = deleted_at
