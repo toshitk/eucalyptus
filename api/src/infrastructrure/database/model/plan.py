@@ -24,7 +24,9 @@ class Plan(Base):
         deleted_at: datetime | None = None,
         created_at: datetime | None = None,
         updated_at: datetime | None = None,
+        id: int | None = None,
     ):
+        self.id = id
         self.user_id = user_id
         self.name = name
         self.deleted_at = deleted_at
