@@ -14,11 +14,9 @@ class PlansController:
 
     @staticmethod
     @router.post("/{user_id}", response_model=ResponseModel)
-    # @router.post("/{user_id}")
     async def post(
         user_id: int, payload: RequestModel, session=Depends(create_session)
     ):
-        # print(f"payload: {payload.name}")
         return await PlansService.create_plan(
             session=session, user_id=user_id, name=payload.name
         )
