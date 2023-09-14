@@ -7,3 +7,7 @@ class ResponseModel(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class RequestModel(BaseModel):
+    name: str = Field(..., example="My Plan")

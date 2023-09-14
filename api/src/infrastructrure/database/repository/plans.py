@@ -11,3 +11,12 @@ class PlansRepository:
         )
 
         return result.scalars().all()
+
+    @staticmethod
+    async def create(session: Session, user_id: int, name: str) -> Plan:
+        plan = Plan(user_id=user_id, name=name)
+        session.add(plan)
+        await session.commit()
+        await session.refresh(plan)
+
+        return plan

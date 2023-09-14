@@ -7,3 +7,7 @@ class PlansService:
     @staticmethod
     async def list_my_plans(session: Session, user_id: int) -> list[Plan]:
         return await PlansRepository.list_by_user_id(session=session, user_id=user_id)
+
+    @staticmethod
+    async def create_plan(session: Session, user_id: int, name: str) -> Plan:
+        return await PlansRepository.create(session=session, user_id=user_id, name=name)
