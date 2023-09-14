@@ -12,8 +12,10 @@ class Plan(Base):
     user_id = Column(Integer, nullable=False)
     name = Column(VARCHAR(255), nullable=False)
     deleted_at = Column(DATETIME, default=None)
-    created_at = Column(DATETIME, default=datetime.now)
-    updated_at = Column(DATETIME, default=datetime.now, onupdate=datetime.now)
+    created_at = Column(DATETIME, default=datetime.now, nullable=False)
+    updated_at = Column(
+        DATETIME, default=datetime.now, nullable=False, onupdate=datetime.now
+    )
 
     def __init__(
         self,
