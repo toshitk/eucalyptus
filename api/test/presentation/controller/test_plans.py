@@ -34,3 +34,18 @@ class TestPlansController:
         assert response.status_code == 200
         assert response.json() == expected
         list_my_plans.assert_called_once_with(session="dummy session", user_id=1)
+
+    @patch("src.application.service.plans.PlansService.create_plan")
+    def test_post(self, create_plan, _fixture):
+        client = _fixture
+
+        create_plan.return_value = Plan(id=1, user_id=1, name="Create Plan")
+        expected = {"id": 1, "name": "Create Plan"}
+
+        response = client.post("/plans/1", json={"name": "Create Plan"})
+
+        assert response.status_code == 200
+        assert response.json() == expected
+        create_plan.assert_called_once_with(
+            session="dummy session", user_id=1, name="Create Plan"
+        )
