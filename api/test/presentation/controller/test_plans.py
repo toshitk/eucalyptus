@@ -6,6 +6,8 @@ from src.infrastructrure.database.connection import create_session
 from src.infrastructrure.database.model.plan import Plan
 from src.main import app
 
+_service _class = "src.application.service.plans.PlansService"
+
 
 @fixture
 def _fixture():
@@ -15,7 +17,7 @@ def _fixture():
 
 
 class TestPlansController:
-    @patch("src.application.service.plans.PlansService.list_my_plans")
+    @patch(f"{_service_class}.list_my_plans")
     def test_get(self, list_my_plans, _fixture):
         client = _fixture
 
@@ -35,7 +37,7 @@ class TestPlansController:
         assert response.json() == expected
         list_my_plans.assert_called_once_with(session="dummy session", user_id=1)
 
-    @patch("src.application.service.plans.PlansService.create_plan")
+    @patch(f"{_service_class}.create_plan")
     def test_post(self, create_plan, _fixture):
         client = _fixture
 
