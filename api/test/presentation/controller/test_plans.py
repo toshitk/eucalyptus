@@ -6,7 +6,7 @@ from src.infrastructrure.database.connection import create_session
 from src.infrastructrure.database.model.plan import Plan
 from src.main import app
 
-_service _class = "src.application.service.plans.PlansService"
+_service_class = "src.application.service.plans.PlansService"
 
 
 @fixture
