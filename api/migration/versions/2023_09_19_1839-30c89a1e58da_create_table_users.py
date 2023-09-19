@@ -1,8 +1,8 @@
 """create table(users)
 
-Revision ID: 71ae9af4bed2
-Revises: 
-Create Date: 2023-09-19 11:05:19.434768
+Revision ID: 30c89a1e58da
+Revises:
+Create Date: 2023-09-19 18:39:09.305364
 
 """
 from datetime import datetime
@@ -13,7 +13,7 @@ from alembic import op
 from sqlalchemy import DATETIME, VARCHAR, Column, Integer
 
 # revision identifiers, used by Alembic.
-revision: str = "71ae9af4bed2"
+revision: str = "30c89a1e58da"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
