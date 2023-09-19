@@ -1,22 +1,12 @@
+from test.presentation.controller.base import ControllerTestBase
 from unittest.mock import patch
 
-from fastapi.testclient import TestClient
-from pytest import fixture
-from src.infrastructrure.database.connection import create_session
 from src.infrastructrure.database.model.plan import Plan
-from src.main import app
 
 _service_class = "src.application.service.plans.PlansService"
 
 
-@fixture
-def _fixture():
-    app.dependency_overrides[create_session] = lambda: "dummy session"
-    client = TestClient(app=app, base_url="http://test")
-    return client
-
-
-class TestPlansController:
+class TestPlansController(ControllerTestBase):
     @patch(f"{_service_class}.list_my_plans")
     def test_get(self, list_my_plans, _fixture):
         client = _fixture
@@ -35,7 +25,7 @@ class TestPlansController:
 
         assert response.status_code == 200
         assert response.json() == expected
-        list_my_plans.assert_called_once_with(session="dummy session", user_id=1)
+        list_my_plans.assert_called_once_with(session="dummy", user_id=1)
 
     @patch(f"{_service_class}.create_plan")
     def test_post(self, create_plan, _fixture):
@@ -49,5 +39,5 @@ class TestPlansController:
         assert response.status_code == 200
         assert response.json() == expected
         create_plan.assert_called_once_with(
-            session="dummy session", user_id=1, name="Create Plan"
+            session="dummy", user_id=1, name="Create Plan"
         )
