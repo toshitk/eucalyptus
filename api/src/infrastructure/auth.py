@@ -6,6 +6,8 @@ from jose import JWTError, jwt
 
 auth0_domain = "dev-e3ybvpddsjl3sbd7.us.auth0.com"
 auth0_audience = "https://dev-e3ybvpddsjl3sbd7.us.auth0.com/api/v2/"
+auth0_client_id = "rniXR9lbn5tuml03yGQ4fEw8m5dXC2Gu"
+auth0_client_secret = "qF9iz6VeUsFZUdjAEg3PCiTdbw2gUTc1Jwe7CJRQfkErMreIdbDeHPTZVtSCezMz"
 
 
 def auth():
@@ -88,3 +90,33 @@ def _decode_jwt_token(token: str, key: str) -> dict:
         raise HTTPException(status_code=401, detail="Error decoding token")
 
     return payload
+
+
+def create_auth0_user(name: str, email: str, password: str) -> dict:
+    token = _get_management_api_token()
+
+    url = f"https://{auth0_domain}/api/v2/users"
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    payload = {
+        "email": email,
+        "password": password,
+        "connection": "Username-Password-Authentication",
+    }
+    response = requests.post(url, headers=headers, json=payload)
+    if response.status_code != 201:
+        raise HTTPException(status_code=400, detail="Failed to create user")
+    return response.json()
+
+
+def _get_management_api_token():
+    url = f"https://{auth0_domain}/oauth/token"
+    payload = {
+        "client_id": auth0_client_id,
+        "client_secret": auth0_client_secret,
+        "audience": f"https://{auth0_domain}/api/v2/",
+        "grant_type": "client_credentials",
+    }
+    response = requests.post(url, json=payload)
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Failed to get API token")
+    return response.json()["access_token"]
