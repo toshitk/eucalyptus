@@ -1,4 +1,4 @@
-from test.presentation.controller.base import ControllerTestBase, dummy_auth
+from test.presentation.controller.base import ControllerTestBase, skip_auth
 from unittest.mock import patch
 
 from src.infrastructure.database.model.user import User
@@ -7,7 +7,7 @@ _service_class = "src.application.service.users.UsersService"
 
 
 class TestUsersController(ControllerTestBase):
-    @dummy_auth()
+    @skip_auth()
     @patch(f"{_service_class}.find_by_id")
     def test_get(self, find_by_id, _fixture):
         client = _fixture

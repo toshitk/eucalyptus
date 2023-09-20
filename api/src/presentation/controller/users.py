@@ -12,5 +12,4 @@ class UsersController:
     @router.get("/{user_id}", response_model=ResponseModel)
     @auth()
     async def get(request: Request, user_id: int, session=Depends(create_session)):
-        print("aaa")
         return await UsersService.find_by_id(session=session, id=user_id)
