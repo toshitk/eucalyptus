@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from src.application.service.plans import PlansService
-from src.infrastructrure.database.connection import create_session
+from src.infrastructure.database.connection import create_session
 from src.presentation.schema.plans import RequestModel, ResponseModel
 
 router = APIRouter(prefix="/plans", tags=["plans"])

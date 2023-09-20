@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from src.infrastructrure.database.model.plan import Plan
+from src.infrastructure.database.model.plan import Plan
 
 
 class PlansRepository:

@@ -1,7 +1,7 @@
 from test.presentation.controller.base import ControllerTestBase
 from unittest.mock import patch
 
-from src.infrastructrure.database.model.plan import Plan
+from src.infrastructure.database.model.plan import Plan
 
 _service_class = "src.application.service.plans.PlansService"
 

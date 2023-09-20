@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from src.infrastructrure.database.model.plan import Plan
-from src.infrastructrure.database.repository.plans import PlansRepository
+from src.infrastructure.database.model.plan import Plan
+from src.infrastructure.database.repository.plans import PlansRepository
 
 
 class PlansService:
