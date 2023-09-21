@@ -1,15 +1,18 @@
+import os
 from functools import wraps
 
 import requests  # type: ignore
+from dotenv import load_dotenv
 from fastapi import HTTPException, Request
 from jose import JWTError, jwt
 from src.infrastructure.database.connection import create_session
 from src.infrastructure.database.repository.users import UsersRepository
 
-auth0_domain = "dev-e3ybvpddsjl3sbd7.us.auth0.com"
-auth0_audience = "https://dev-e3ybvpddsjl3sbd7.us.auth0.com/api/v2/"
-auth0_client_id = "rniXR9lbn5tuml03yGQ4fEw8m5dXC2Gu"
-auth0_client_secret = "qF9iz6VeUsFZUdjAEg3PCiTdbw2gUTc1Jwe7CJRQfkErMreIdbDeHPTZVtSCezMz"
+load_dotenv()
+auth0_domain = os.getenv("AUTH0_DOMAIN")
+auth0_audience = os.getenv("AUTH0_AUDIENCE")
+auth0_client_id = os.getenv("AUTH0_CLIENT_ID")
+auth0_client_secret = os.getenv("AUTH0_SECRET")
 
 
 async def auth(request: Request):
