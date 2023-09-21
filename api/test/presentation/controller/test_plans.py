@@ -1,4 +1,4 @@
-from test.presentation.controller.base import ControllerTestBase, skip_auth
+from test.presentation.controller.base import ControllerTestBase
 from unittest.mock import patch
 
 from src.infrastructure.database.model.plan import Plan
@@ -7,7 +7,6 @@ _service_class = "src.application.service.plans.PlansService"
 
 
 class TestPlansController(ControllerTestBase):
-    @skip_auth()
     @patch(f"{_service_class}.list_my_plans")
     def test_get(self, list_my_plans, _fixture):
         client = _fixture
@@ -22,13 +21,12 @@ class TestPlansController(ControllerTestBase):
             {"id": 2, "name": "My Plan2"},
         ]
 
-        response = client.get("/plans/1")
+        response = client.get("/plans")
 
         assert response.status_code == 200
         assert response.json() == expected
         list_my_plans.assert_called_once_with(session="dummy", user_id=1)
 
-    @skip_auth()
     @patch(f"{_service_class}.create_plan")
     def test_post(self, create_plan, _fixture):
         client = _fixture
@@ -36,7 +34,7 @@ class TestPlansController(ControllerTestBase):
         create_plan.return_value = Plan(id=1, user_id=1, name="Create Plan")
         expected = {"id": 1, "name": "Create Plan"}
 
-        response = client.post("/plans/1", json={"name": "Create Plan"})
+        response = client.post("/plans", json={"name": "Create Plan"})
 
         assert response.status_code == 200
         assert response.json() == expected
