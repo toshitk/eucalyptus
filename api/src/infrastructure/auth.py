@@ -104,7 +104,7 @@ def create_auth0_user(name: str, email: str, password: str) -> dict:
     }
     response = requests.post(url, headers=headers, json=payload)
     if response.status_code != 201:
-        raise HTTPException(status_code=400, detail="Failed to create user")
+        raise HTTPException(status_code=400, detail=response.json()["message"])
     return response.json()
 
 

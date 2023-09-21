@@ -20,3 +20,9 @@ class UsersController:
         auth0_user = create_auth0_user(
             name=payload.name, email=payload.email, password=payload.password
         )
+        return await UsersService.register(
+            session=session,
+            auth0_id=auth0_user["user_id"],
+            name=payload.name,
+            email=auth0_user["name"],
+        )

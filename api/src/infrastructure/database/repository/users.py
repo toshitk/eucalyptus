@@ -11,3 +11,12 @@ class UsersRepository:
         )
 
         return result.scalars().one_or_none()
+
+    @staticmethod
+    async def insert(session: Session, auth0_id: str, name: str, email: str) -> User:
+        user = User(auth0_id=auth0_id, name=name, email=email)
+        session.add(user)
+        await session.commit()
+        await session.refresh(user)
+
+        return user
