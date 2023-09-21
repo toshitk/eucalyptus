@@ -13,6 +13,14 @@ class UsersRepository:
         return result.scalars().one_or_none()
 
     @staticmethod
+    async def find_by_auth0_id(session: Session, auth0_id: str) -> User:
+        result = await session.execute(
+            select(User).where(User.auth0_id == auth0_id, User.deleted_at.is_(None))
+        )
+
+        return result.scalars().one_or_none()
+
+    @staticmethod
     async def insert(session: Session, auth0_id: str, name: str, email: str) -> User:
         user = User(auth0_id=auth0_id, name=name, email=email)
         session.add(user)

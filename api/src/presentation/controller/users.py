@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, Request
+from src.application.service.auth import AuthService
 from src.application.service.users import UsersService
 from src.infrastructure.auth import auth, create_auth0_user
 from src.infrastructure.database.connection import create_session
@@ -17,9 +18,7 @@ class UsersController:
     @staticmethod
     @router.post("", response_model=ResponseModel)
     async def post(payload: RequestModel, session=Depends(create_session)):
-        auth0_user = create_auth0_user(
-            name=payload.name, email=payload.email, password=payload.password
-        )
+        auth0_user = AuthService.create(email=payload.email, password=payload.password)
         return await UsersService.create(
             session=session,
             auth0_id=auth0_user["user_id"],
