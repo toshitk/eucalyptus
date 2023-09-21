@@ -9,7 +9,7 @@ class UsersService:
         return await UsersRepository.find_by_id(session=session, id=id)
 
     @staticmethod
-    async def register(session: Session, auth0_id: str, name: str, email: str) -> User:
+    async def create(session: Session, auth0_id: str, name: str, email: str) -> User:
         return await UsersRepository.insert(
             session=session, auth0_id=auth0_id, name=name, email=email
         )
