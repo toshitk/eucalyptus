@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from src.application.service.auth import AuthService
 from src.application.service.users import UsersService
-from src.infrastructure.auth import auth, create_auth0_user
+from src.infrastructure.auth import auth
 from src.infrastructure.database.connection import create_session
 from src.presentation.schema.users import RequestModel, ResponseModel
 
