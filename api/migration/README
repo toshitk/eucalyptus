@@ -1,1 +1,5 @@
-Generic single-database configuration.
+# Create migration file
+`alembic revision -m "abstract migration"`
+
+# Execute migration
+`alembic upgrade head`
