@@ -2,17 +2,20 @@
   <div id="app">
     <GlobalMenu @toggle-drawer="toggleDrawer" />
     <ExpandMenu :drawer="drawer" @update:drawer="drawer = $event" />
+    <LineChart />
   </div>
 </template>
 
 <script lang="ts">
 import ExpandMenu from "./components/ExpandMenu.vue";
 import GlobalMenu from "./components/GlobalMenu.vue";
+import LineChart from "./components/LineChart.vue";
 
 export default {
   components: {
     ExpandMenu,
-    GlobalMenu
+    GlobalMenu,
+    LineChart,
   },
   data() {
     return {
