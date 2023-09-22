@@ -23,6 +23,6 @@ class PlansController:
         user_id: int = Depends(auth),
         session=Depends(create_session),
     ):
-        return await PlansService.create_plan(
+        return await PlansService.create(
             session=session, user_id=user_id, name=payload.name
         )
