@@ -40,7 +40,7 @@ def _analyze_token(authorization: str) -> str:
     return decoded_jwt["sub"]
 
 
-def _parse_authorization_header(authorization):
+def _parse_authorization_header(authorization) -> str:
     splited_values = authorization.split()
 
     if splited_values[0].lower() != "bearer":
@@ -52,7 +52,7 @@ def _parse_authorization_header(authorization):
     return splited_values[1]
 
 
-def _get_public_key(token: str):
+def _get_public_key(token: str) -> dict:
     jwks = _get_jwks()
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
@@ -68,12 +68,12 @@ def _get_public_key(token: str):
     return rsa_key
 
 
-def _get_jwks():
+def _get_jwks() -> dict:
     response = requests.get(f"https://{auth0_domain}/.well-known/jwks.json")
     return response.json()
 
 
-def _decode_jwt_token(token: str, key: str) -> dict:
+def _decode_jwt_token(token: str, key: dict) -> dict:
     try:
         payload = jwt.decode(
             token,
