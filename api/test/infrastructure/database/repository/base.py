@@ -1,6 +1,9 @@
+from contextlib import asynccontextmanager
+from typing import Callable
+
 from pytest import fixture
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 from src.infrastructure.database.model.base import Base
 
 # from src.infrastructure.database.model.user import Base as user
@@ -22,3 +25,20 @@ class RepositoryTestBase:
         #         yield session
 
         return async_session()
+
+    @asynccontextmanager
+    async def setup_method(
+        self, session: Session, func: Callable | None = None, rollback: bool = True
+    ):
+        try:
+            if func is not None:
+                yield await func()
+            else:
+                yield None
+        finally:
+            if rollback:
+                session.rollback()
+                session.close()
+            else:
+                session.commit()
+                session.close()
