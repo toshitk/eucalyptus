@@ -7,11 +7,11 @@ from src.infrastructure.database.model.user import User
 _repo = "src.infrastructure.database.repository.users.UsersRepository"
 
 
-class TestUserService:
+class TestUsersService:
     @pytest.mark.asyncio
     @patch(f"{_repo}.find_by_id")
     async def test_find_by_id(self, find_by_id):
-        find_by_id.new_callable = AsyncMock
+        # find_by_id.new_callable = AsyncMock
         find_by_id.return_value = User(
             id=1, auth0_id="dummy id", name="john", email="test@exampl.com"
         )
@@ -23,7 +23,7 @@ class TestUserService:
     @pytest.mark.asyncio
     @patch(f"{_repo}.insert")
     async def test_create(self, insert):
-        insert.new_callable = AsyncMock
+        # insert.new_callable = AsyncMock
         insert.return_value = User(
             auth0_id="dummy id", name="john", email="test@exampl.com"
         )
