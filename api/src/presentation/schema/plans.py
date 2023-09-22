@@ -1,13 +1,25 @@
+from typing import Any, Dict
+
 from pydantic import BaseModel, Field
 
 
-class ResponseModel(BaseModel):
-    id: int = Field(..., example=1)
-    name: str = Field(..., example="My Plan")
+class PlanModel(BaseModel):
+    name: str = Field(...)
 
     class Config:
-        orm_mode = True
+        json_schema_extra: Dict[str, Any] = {"example": {"name": "My Plan"}}
 
 
-class RequestModel(BaseModel):
-    name: str = Field(..., example="My Plan")
+class ResponseModel(PlanModel):
+    id: int = Field(...)
+
+    class Config(PlanModel.Config):
+        json_schema_extra = {
+            "example": {**PlanModel.Config.json_schema_extra["example"], "id": 1}
+        }
+        from_attributes = True
+
+
+class RequestModel(PlanModel):
+    class Config(PlanModel.Config):
+        pass

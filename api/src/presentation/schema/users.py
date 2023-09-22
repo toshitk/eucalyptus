@@ -1,17 +1,35 @@
+from typing import Any, Dict
+
 from pydantic import BaseModel, Field
 
 
 class UserModel(BaseModel):
-    name: str = Field(..., example="John Smith")
-    email: str = Field(..., example="sample@example.com")
+    name: str = Field(...)
+    email: str = Field(...)
+
+    class Config:
+        json_schema_extra: Dict[str, Any] = {
+            "example": {"name": "John Smith", "email": "sample@example.com"}
+        }
 
 
 class ResponseModel(UserModel):
-    id: int = Field(..., example=1)
+    id: int = Field(...)
 
-    class Config:
-        orm_mode = True
+    class Config(UserModel.Config):
+        json_schema_extra = {
+            "example": {**UserModel.Config.json_schema_extra["example"], "id": 1}
+        }
+        from_attributes = True
 
 
 class RequestModel(UserModel):
-    password: str = Field(..., example="Password")
+    password: str = Field(...)
+
+    class Config(UserModel.Config):
+        json_schema_extra = {
+            "example": {
+                **UserModel.Config.json_schema_extra["example"],
+                "password": "Password",
+            }
+        }
