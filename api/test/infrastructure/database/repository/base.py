@@ -37,8 +37,8 @@ class RepositoryTestBase:
                 yield None
         finally:
             if rollback:
-                session.rollback()
-                session.close()
+                await session.rollback()
+                await session.close()
             else:
-                session.commit()
-                session.close()
+                await session.commit()
+                await session.close()
