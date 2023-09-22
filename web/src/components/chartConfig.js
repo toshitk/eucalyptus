@@ -5,7 +5,12 @@ export const data = {
       label: 'Data One',
       backgroundColor: '#f87979',
       data: [40, 39, 10, 40, 39, 100, 40]
-    }
+    },
+    {
+      label: 'Data',
+      backgroundColor: '#f87979',
+      data: [10, 20, 30, 40, 50, 100, 40]
+    },
   ]
 }
 
