@@ -1,6 +1,6 @@
 <template>
   <div style="height: 500px;">
-    <Line :data="data" :options="options" />
+    <Line :data="chartData" :options="chartOptions" />
   </div>
 </template>
 
@@ -16,7 +16,6 @@ Title,
 Tooltip
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
-import * as chartConfig from './chartConfig.js'
 
 ChartJS.register(
   CategoryScale,
@@ -33,13 +32,27 @@ export default {
     Line
   },
   data() {
-    return chartConfig
+    return {
+      chartData: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: '#f87979',
+            data: [40, 39, 10, 40, 39, 100, 40]
+          },
+          {
+            label: 'Data',
+            backgroundColor: '#f87979',
+            data: [10, 20, 30, 40, 50, 100, 40]
+          },
+        ]
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    }
   }
 }
 </script>
-
-<style scoped>
-.chart-container {
-  height: 500px;
-}
-</style>
