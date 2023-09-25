@@ -9,6 +9,7 @@ class ResponseModel(BaseModel):
     name: str = Field(...)
     year: int = Field(...)
     month: int = Field(...)
+    amount: int = Field()
 
     class Config:
         json_schema_extra = {
@@ -20,6 +21,7 @@ class ResponseModel(BaseModel):
                 "name": "monthly salary",
                 "year": 2000,
                 "month": 1,
+                "amount": 500000,
             }
         }
         from_attributes = True

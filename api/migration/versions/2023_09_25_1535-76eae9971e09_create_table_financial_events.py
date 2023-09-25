@@ -29,6 +29,7 @@ def upgrade() -> None:
         Column("name", VARCHAR(255), nullable=False),
         Column("year", Integer, nullable=False),
         Column("month", Integer, nullable=False),
+        Column("amount", Integer),
         Column("deleted_at", DATETIME, default=None),
         Column("created_at", DATETIME, default=datetime.now, nullable=False),
         Column(
@@ -43,8 +44,8 @@ def upgrade() -> None:
     op.execute(
         sa.text(
             """
-            INSERT INTO financial_events (id, plan_id, type, category, name, year, month, created_at, updated_at)
-            VALUES (:id, :plan_id, :type, :category, :name, :year, :month, :created_at, :updated_at)
+            INSERT INTO financial_events (id, plan_id, type, category, name, year, month, amount, created_at, updated_at)
+            VALUES (:id, :plan_id, :type, :category, :name, :year, :month, :amount, :created_at, :updated_at)
         """
         ).bindparams(
             sa.bindparam("id", 1),
@@ -54,6 +55,7 @@ def upgrade() -> None:
             sa.bindparam("name", "monthly salary"),
             sa.bindparam("year", 2000),
             sa.bindparam("month", 1),
+            sa.bindparam("amount", 500000),
             sa.bindparam("created_at", "2000-01-01"),
             sa.bindparam("updated_at", "2000-01-01"),
         )
