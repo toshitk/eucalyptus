@@ -5,7 +5,7 @@ class ResponseModel(BaseModel):
     id: int = Field(...)
     plan_id: int = Field(...)
     type: int = Field(...)
-    category: str = Field(...)
+    category: str = Field()
     name: str = Field(...)
     year: int = Field(...)
     month: int = Field(...)
