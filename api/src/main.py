@@ -1,7 +1,11 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.presentation.controller import plans_router, users_router
+from src.presentation.controller import (
+    financial_events_router,
+    plans_router,
+    users_router,
+)
 
 app = FastAPI()
 allow_origins = [
@@ -17,3 +21,4 @@ app.add_middleware(
 )
 app.include_router(users_router)
 app.include_router(plans_router)
+app.include_router(financial_events_router)
