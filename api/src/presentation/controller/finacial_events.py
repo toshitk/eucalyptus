@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, Request
+from src.application.service.financial_events import FinancialEventsService
 from src.infrastructure.auth import auth
 from src.infrastructure.database.connection import create_session
 from src.presentation.schema.financial_events import ResponseModel
@@ -15,4 +16,6 @@ class FinancialEventsController:
         user_id: int = Depends(auth),
         session=Depends(create_session),
     ):
-        pass
+        return await FinancialEventsService.list_plan_events(
+            session=session, plan_id=plan_id
+        )
