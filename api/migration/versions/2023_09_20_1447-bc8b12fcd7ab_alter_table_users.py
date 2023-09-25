@@ -24,7 +24,7 @@ def upgrade() -> None:
     op.execute(
         sa.text(
             """
-            UPDATE users SET auth0_id = 'auth0|650a890c07c072bfdfa8a78a'
+            UPDATE users SET auth0_id = 'auth0|650b9c9a9414f9ea13f7d9aa'
             WHERE id = 1
         """
         )
