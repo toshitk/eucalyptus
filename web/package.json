@@ -10,6 +10,7 @@
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^2.1.2",
     "@mdi/font": "7.0.96",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
