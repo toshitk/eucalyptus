@@ -11,3 +11,9 @@
   justify-content: center;
 }
 </style>
+
+<script>
+export default {
+  name: 'Login',
+}
+</script>
