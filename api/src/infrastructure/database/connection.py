@@ -12,8 +12,3 @@ def create_session():
         autocommit=False, autoflush=False, bind=async_engine, class_=AsyncSession
     )
     return async_session()
-
-
-async def get_db():
-    async with create_session() as session:
-        yield session
