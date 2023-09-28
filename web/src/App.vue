@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <GlobalMenu @toggle-drawer="toggleDrawer" />
-    <ExpandMenu :drawer="drawer" @update:drawer="drawer = $event" />
-    <LineChart />
+    <!-- <GlobalMenu @toggle-drawer="toggleDrawer" /> -->
+    <!-- <ExpandMenu :drawer="drawer" @update:drawer="drawer = $event" /> -->
+    <Login />
+    <!-- <LineChart /> -->
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import ExpandMenu from "./components/ExpandMenu.vue";
 import GlobalMenu from "./components/GlobalMenu.vue";
 import LineChart from "./components/LineChart.vue";
+import Login from "./views/Login.vue";
 
 export default {
   components: {
     ExpandMenu,
     GlobalMenu,
     LineChart,
+    Login,
   },
   data() {
     return {
