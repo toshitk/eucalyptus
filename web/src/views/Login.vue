@@ -1,6 +1,6 @@
 <template>
   <div class="login-button">
-    <button>Login</button>
+    <button @click="login">Login</button>
   </div>
 </template>
 
@@ -15,5 +15,19 @@
 <script>
 export default {
   name: 'Login',
+  methods: {
+    // Log the user in
+    login() {
+      // console.log(this.$auth)
+      // console.log(this.$auth.loginWithRedirect)
+      this.$auth.loginWithRedirect();
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    }
+  }
 }
 </script>
