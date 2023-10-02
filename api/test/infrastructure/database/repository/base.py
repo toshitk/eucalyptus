@@ -6,7 +6,6 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import Session, sessionmaker
 from src.infrastructure.database.model.base import Base
 
-# from src.infrastructure.database.model.user import Base as user
 
 
 class RepositoryTestBase:
@@ -19,10 +18,6 @@ class RepositoryTestBase:
         async with async_engine.begin() as conn:
             await conn.run_sync(Base.metadata.drop_all)
             await conn.run_sync(Base.metadata.create_all)
-
-        # async def create_session():
-        #     async with async_session() as session:
-        #         yield session
 
         return async_session()
 
