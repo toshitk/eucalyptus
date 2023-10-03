@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
 import '@mdi/font/css/materialdesignicons.css'
 import { RouteLocationRaw } from 'vue-router'
@@ -9,14 +10,13 @@ import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
 import { clientId, domain } from "../authConfig.json"
 import { Auth0Plugin } from "./auth"
-import router from './router'
 
 const vuetify = createVuetify({
   components,
   directives,
 })
 
-const app = createApp(App).use(router).use(vuetify).use(Auth0Plugin, {
+const app = createApp(App).use(vuetify).use(Auth0Plugin, {
   domain,
   clientId,
   onRedirectCallback: (appState: { targetUrl: RouteLocationRaw }) => {
