@@ -16,7 +16,7 @@ const vuetify = createVuetify({
   directives,
 })
 
-const app = createApp(App).use(vuetify).use(Auth0Plugin, {
+const app = createApp(App).use(vuetify).use(router).use(Auth0Plugin, {
   domain,
   clientId,
   onRedirectCallback: (appState: { targetUrl: RouteLocationRaw }) => {

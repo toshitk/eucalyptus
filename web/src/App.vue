@@ -2,7 +2,8 @@
   <div id="app">
     <!-- <GlobalMenu @toggle-drawer="toggleDrawer" /> -->
     <!-- <ExpandMenu :drawer="drawer" @update:drawer="drawer = $event" /> -->
-    <Login />
+    <router-view/>
+    <!-- <Login /> -->
     <!-- <LineChart /> -->
   </div>
 </template>
