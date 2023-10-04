@@ -13,21 +13,17 @@
 </style>
 
 <script>
+import { useAuth0 } from '@auth0/auth0-vue';
+
 export default {
-  name: 'Login',
-  methods: {
-    // Log the user in
-    login() {
-      // console.log(this.$auth)
-      // console.log(this.$auth.loginWithRedirect)
-      this.$auth.loginWithRedirect();
-    },
-    // Log the user out
-    logout() {
-      this.$auth.logout({
-        returnTo: window.location.origin
-      });
-    }
+  setup() {
+    const { loginWithRedirect } = useAuth0();
+
+    return {
+      login: () => {
+        loginWithRedirect();
+      }
+    };
   }
-}
+};
 </script>
