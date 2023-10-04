@@ -20,7 +20,8 @@ const app = createApp(App).use(vuetify).use(router).use(createAuth0({
     domain: "dev-e3ybvpddsjl3sbd7.us.auth0.com",
     clientId: "Q4cCWeXXVl79APpfoT8WP1k7zygYDKJy",
     authorizationParams: {
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
+      audience: "https://dev-e3ybvpddsjl3sbd7.us.auth0.com/api/v2/",
     }
   })
 );
